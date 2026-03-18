@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Anthony Gerard Leuterio | Global Real Estate Visionary. Premium Quad-Color Abstract Portfolio.">
+    <title>Anthony Leuterio — Visionary / Majestic / Abstract</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;800;900&family=Cinzel:wght@400;700;900&family=JetBrains+Mono:wght@400;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- --- TOP BAR --- -->
+    <div class="top-bar">
+        <div class="brand-id">ANTHONY LEUTERIO / VISIONARY</div>
+        <div class="brand-id" style="opacity: 0.5;">CEBU / PH</div>
+    </div>
+
+    <!-- --- ICONIC FLOATING NAV --- -->
+    <div class="floating-nav">
+        <a href="#hero" class="nav-item" aria-label="Home">
+            <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+            <span class="nav-tooltip">START</span>
+        </a>
+        <a href="#ventures" class="nav-item" aria-label="Ventures">
+            <svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>
+            <span class="nav-tooltip">ECOSYSTEM</span>
+        </a>
+        <a href="#scale" class="nav-item" aria-label="Awards">
+            <svg viewBox="0 0 24 24"><path d="M12 15l-2 5h4l-2-5zm0 0l2-10-2 10zm0 0l-2-10 2 10zM12 2a10 10 0 1 1 0 20 10 10 0 0 1 0-20z"></path></svg>
+            <span class="nav-tooltip">AWARDS</span>
+        </a>
+        <a href="#credentials" class="nav-item" aria-label="Proof">
+            <svg viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+            <span class="nav-tooltip">PROOF</span>
+        </a>
+        <a href="#contact" class="nav-item" aria-label="Contact">
+            <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+            <span class="nav-tooltip">CONNECT</span>
+        </a>
+        <button class="nav-item theme-toggle" aria-label="Toggle Theme" id="theme-btn" style="background:none; border:none; cursor:pointer;">
+            <svg class="sun" viewBox="0 0 24 24" style="width:20px; height:20px; stroke:currentColor; stroke-width:2; fill:none;"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+            <svg class="moon" viewBox="0 0 24 24" style="width:20px; height:20px; stroke:currentColor; stroke-width:2; fill:none; display:none;"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+            <span class="nav-tooltip">THEME</span>
+        </button>
+    </div>
+
+    <main>
+        
+        <!-- --- SECTION 0: IDENTITY --- -->
+        <section id="hero">
+            <img src="imgs/upscalemedia-transformed (1).jpeg" alt="Anthony Leuterio" class="hero-img-bg">
+            <span class="hero-sub reveal">International Principal / 2024</span>
+            <h1 class="hero-name reveal">ANTHONY<br>LEUTERIO</h1>
+            <p class="hero-tagline reveal" style="max-width: 500px; color: var(--white-stark); font-size: 1.5rem; font-weight: 400; text-shadow: 0 0 10px rgba(255,255,255,0.2);">
+                Building the nation's most significant real estate ecosystem. Founder of Filipino Homes & Leuterio Realty.
+            </p>
+        </section>
+
+        <!-- --- SECTION 1: SYSTEM --- -->
+        <section class="chapter" id="ventures">
+            <h2 class="chapter-heading reveal">
+                STRATEGIC<br><span>VENTURES</span>
+            </h2>
+
+            <div class="discovery-progress">
+                <div class="progress-bar" id="v-progress"></div>
+            </div>
+            
+            <div class="ventures-track" id="ventures-track">
+                <!-- MONOLITH 01: THE ANCHOR -->
+                <div class="monolith-wrapper">
+                    <div class="monolith reveal" data-index="01" onmouseenter="document.body.className=document.body.classList.contains('light-mode')?'light-mode aura-realty':'aura-realty'" onmouseleave="document.body.className=document.body.classList.contains('light-mode')?'light-mode':''">
+                        <div class="monolith-main">
+                            <span class="monolith-index">01 / REALTY</span>
+                            <div class="logo-portal">
+                                <img src="imgs/LR White 1.png" alt="Leuterio Realty Logo" class="logo-dark">
+                                <img src="imgs/LT.svg" alt="Anthony Leuterio Logo" class="logo-light" style="display:none;">
+                            </div>
+                            <h3>Leuterio Realty</h3>
+                            <p>The nationwide flagship brokerage powerhouse. Scaled through elite management and high-fidelity sales performance on a global stage.</p>
+                        </div>
+                        <div class="decor-card">
+                            <img src="imgs/house-decor.png" class="monolith-house-decor" alt="House Icon">
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- MONOLITH 02: THE ECOSYSTEM -->
+                <div class="monolith-wrapper">
+                    <div class="monolith reveal" data-index="02" onmouseenter="document.body.className=document.body.classList.contains('light-mode')?'light-mode aura-gold':'aura-gold'" onmouseleave="document.body.className=document.body.classList.contains('light-mode')?'light-mode':''">
+                        <div class="monolith-main">
+                            <span class="monolith-index">02 / PORTAL</span>
+                            <div class="logo-portal">
+                                <img src="imgs/Filipinohomeslogo-2 1.png" alt="Filipino Homes Logo" class="logo-dark">
+                                <img src="imgs/Flipinohomes.png" alt="Filipino Homes Logo" class="logo-light" style="display:none;">
+                            </div>
+                            <h3>Filipino Homes</h3>
+                            <p>PropTech innovation. A massive digital ecosystem connecting millions of Filipinos to property opportunities across the global stage.</p>
+                        </div>
+                        <div class="decor-card">
+                            <img src="imgs/pin-decor.png" class="monolith-house-decor" alt="Pin Icon">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- MONOLITH 03: THE MARKET -->
+                <div class="monolith-wrapper">
+                    <div class="monolith reveal" data-index="03" onmouseenter="document.body.className=document.body.classList.contains('light-mode')?'light-mode aura-rent':'aura-rent'" onmouseleave="document.body.className=document.body.classList.contains('light-mode')?'light-mode':''">
+                            <div class="monolith-main">
+                            <span class="monolith-index">03 / RENTAL</span>
+                            <div class="logo-portal">
+                                <img src="imgs/RentPh new white logo 1.png" alt="Rent.ph Logo">
+                            </div>
+                            <h3>Rent.ph</h3>
+                            <p>The significant rental marketplace infrastructure in the Philippines. Bridging housing inventory for the modern workforce.</p>
+                        </div>
+                        <div class="decor-card">
+                            <img src="imgs/RentPh new white logo 2.png" class="monolith-house-decor" alt="Rent.ph Decor">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- --- SECTION 2: RECOGNITION --- -->
+        <section class="chapter" id="scale">
+            <h2 class="chapter-heading">
+                VERIFIED<br><span>LEGACY & RECOGNITION</span>
+            </h2>
+
+            <div class="awards-container">
+                <div class="awards-timeline">
+                    <!-- 2025: GRAND REALTY AWARD -->
+                    <div class="award-item reveal">
+                        <div class="award-visual">
+                            <div class="award-year-overlay">2025</div>
+                            <div class="award-img-container">
+                                <img src="imgs/Grand Realty award 2025.jpg" alt="Grand Realty Award 2025">
+                            </div>
+                        </div>
+                        <div class="award-content">
+                            <h3>Grand Realty Award</h3>
+                            <p>Global Leadership Distinction — 2025 Excellence Summit</p>
+                        </div>
+                    </div>
+
+                    <!-- 2024: INTERNATIONAL REALTOR OF THE YEAR -->
+                    <div class="award-item reveal">
+                        <div class="award-visual">
+                            <div class="award-year-overlay">2024</div>
+                            <div class="award-img-container">
+                                <img src="imgs/upscalemedia-transformed (1).jpeg" alt="Anthony Leuterio - International Realtor of the Year">
+                            </div>
+                        </div>
+                        <div class="award-content">
+                            <h3>International Realtor of the Year</h3>
+                            <p>National Association of Realtors (NAR) USA — First Filipino Honoree in History</p>
+                        </div>
+                    </div>
+
+                    <!-- 2025: ELITE PARTNER DUBAI -->
+                    <div class="award-item reveal">
+                        <div class="award-visual">
+                            <div class="award-year-overlay">2025</div>
+                            <div class="award-img-container">
+                                <img src="https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&q=80&w=1200" alt="Dubai Global Achievement">
+                            </div>
+                        </div>
+                        <div class="award-content">
+                            <h3>Elite Partner Award — Dubai</h3>
+                            <p>Dugasta Properties UAE — First Filipino Marketing Firm Recognized in Dubai</p>
+                        </div>
+                    </div>
+
+                    <!-- 2025: TOP TAXPAYER -->
+                    <div class="award-item reveal">
+                        <div class="award-visual">
+                            <div class="award-year-overlay">2025</div>
+                            <div class="award-img-container">
+                                <img src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&q=80&w=1200" alt="Fiscal Integrity">
+                            </div>
+                        </div>
+                        <div class="award-content">
+                            <h3>Top 1 Individual Taxpayer</h3>
+                            <p>Bureau of Internal Revenue (BIR) — RDO 82 Cebu City South</p>
+                        </div>
+                    </div>
+
+                    <!-- MILESTONE: DIGITAL PIONEER -->
+                    <div class="award-item reveal">
+                        <div class="award-visual">
+                            <div class="award-year-overlay">CERT</div>
+                            <div class="award-img-container">
+                                <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&q=80&w=1200" alt="Digital Pioneer">
+                            </div>
+                        </div>
+                        <div class="award-content">
+                            <h3>First E-Pro Certified Broker</h3>
+                            <p>National Association of Realtors (NAR) — Digital Strategy Pioneer in the Philippines</p>
+                        </div>
+                    </div>
+
+                    <!-- MILESTONE: GLOBAL CONSULTANCY -->
+                    <div class="award-item reveal">
+                        <div class="award-visual">
+                            <div class="award-year-overlay">INTL</div>
+                            <div class="award-img-container">
+                                <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&q=80&w=1200" alt="Property Consultancy">
+                            </div>
+                        </div>
+                        <div class="award-content">
+                            <h3>Best Property Consultancy PH</h3>
+                            <p>International Industry Recognition — Singapore Excellence Awards</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- --- SECTION 3: CREDENTIALS --- -->
+        <section class="chapter" id="credentials">
+            <h2 class="chapter-heading">
+                ARCHIVE<br><span>OF AUTHORITY</span>
+            </h2>
+
+            <div class="credentials-vault">
+                <!-- Licensed Real Estate Broker -->
+                <div class="credential-monolith reveal">
+                    <div class="cred-visual-portal">
+                        <img src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&q=80&w=800" alt="PRC License Visual">
+                    </div>
+                    <div class="cred-seal"></div>
+                    <div class="cred-info">
+                        <span class="cred-category">LICENSE / PRC</span>
+                        <h3>Licensed Real Estate Broker</h3>
+                        <p class="cred-body">Professional Regulation Commission</p>
+                        <div class="cred-meta">
+                            <span class="cred-badge">PRC CERTIFIED</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Certified Real Estate Salesperson -->
+                <div class="credential-monolith reveal">
+                    <div class="cred-visual-portal">
+                        <img src="https://images.unsplash.com/photo-1554230505-919a13968970?auto=format&fit=crop&q=80&w=800" alt="PAREB Visual">
+                    </div>
+                    <div class="cred-seal"></div>
+                    <div class="cred-info">
+                        <span class="cred-category">CERT / PAREB</span>
+                        <h3>Certified Real Estate Salesperson</h3>
+                        <p class="cred-body">PAREB</p>
+                        <div class="cred-meta">
+                            <span class="cred-badge">PAREB CERTIFIED</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Digital Marketing Specialist -->
+                <div class="credential-monolith reveal">
+                    <div class="cred-visual-portal">
+                        <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=800" alt="Google Visual">
+                    </div>
+                    <div class="cred-seal"></div>
+                    <div class="cred-info">
+                        <span class="cred-category">CERT / GOOGLE</span>
+                        <h3>Digital Marketing Specialist</h3>
+                        <p class="cred-body">Google Digital Garage</p>
+                        <div class="cred-meta">
+                            <span class="cred-badge">CERTIFIED</span>
+                            <span class="cred-date">2021</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Accredited Real Estate Consultant -->
+                <div class="credential-monolith reveal">
+                    <div class="cred-visual-portal">
+                        <img src="https://images.unsplash.com/photo-1454165833767-027ff33026b4?auto=format&fit=crop&q=80&w=800" alt="REBAP Visual">
+                    </div>
+                    <div class="cred-seal"></div>
+                    <div class="cred-info">
+                        <span class="cred-category">ACCREDITATION / REBAP</span>
+                        <h3>Accredited Real Estate Consultant</h3>
+                        <p class="cred-body">REBAP</p>
+                        <div class="cred-meta">
+                            <span class="cred-badge">REBAP ACCREDITED</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Social Media Marketing -->
+                <div class="credential-monolith reveal">
+                    <div class="cred-visual-portal">
+                        <img src="https://images.unsplash.com/photo-1611162617474-5b21e879e113?auto=format&fit=crop&q=80&w=800" alt="HubSpot Visual">
+                    </div>
+                    <div class="cred-seal"></div>
+                    <div class="cred-info">
+                        <span class="cred-category">CERT / HUBSPOT</span>
+                        <h3>Social Media Marketing</h3>
+                        <p class="cred-body">HubSpot Academy</p>
+                        <div class="cred-meta">
+                            <span class="cred-badge">CERTIFIED</span>
+                            <span class="cred-date">2022</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PropTech Innovation Certificate -->
+                <div class="credential-monolith reveal">
+                    <div class="cred-visual-portal">
+                        <img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc51?auto=format&fit=crop&q=80&w=800" alt="PropTech Visual">
+                    </div>
+                    <div class="cred-seal"></div>
+                    <div class="cred-info">
+                        <span class="cred-category">CERT / ASEAN</span>
+                        <h3>PropTech Innovation Certificate</h3>
+                        <p class="cred-body">ASEAN PropTech Forum</p>
+                        <div class="cred-meta">
+                            <span class="cred-badge">CERTIFIED</span>
+                            <span class="cred-date">2023</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Entrepreneurship Leadership Program -->
+                <div class="credential-monolith reveal">
+                    <div class="cred-visual-portal">
+                        <img src="https://images.unsplash.com/photo-1521737711867-e3b97375f902?auto=format&fit=crop&q=80&w=800" alt="AIM Visual">
+                    </div>
+                    <div class="cred-seal"></div>
+                    <div class="cred-info">
+                        <span class="cred-category">PROGRAM / AIM</span>
+                        <h3>Entrepreneurship Leadership Program</h3>
+                        <p class="cred-body">Asian Institute of Management</p>
+                        <div class="cred-meta">
+                            <span class="cred-badge">GRADUATE</span>
+                            <span class="cred-date">2019</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Real Estate Investment Strategist -->
+                <div class="credential-monolith reveal">
+                    <div class="cred-visual-portal">
+                        <img src="https://images.unsplash.com/photo-1434626881859-194d67b2b86f?auto=format&fit=crop&q=80&w=800" alt="Investment Visual">
+                    </div>
+                    <div class="cred-seal"></div>
+                    <div class="cred-info">
+                        <span class="cred-category">CERT / PREA</span>
+                        <h3>Real Estate Investment Strategist</h3>
+                        <p class="cred-body">Philippine Real Estate Academy</p>
+                        <div class="cred-meta">
+                            <span class="cred-badge">CERTIFIED</span>
+                            <span class="cred-date">2020</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Digital Marketing Strategy Course -->
+                <div class="credential-monolith reveal">
+                    <div class="cred-visual-portal">
+                        <img src="https://images.unsplash.com/photo-1551288049-bbbda536339a?auto=format&fit=crop&q=80&w=800" alt="Marketing Strategy Visual">
+                    </div>
+                    <div class="cred-seal"></div>
+                    <div class="cred-info">
+                        <span class="cred-category">COURSE / STRATEGY</span>
+                        <h3>Digital Marketing Strategy Course</h3>
+                        <p class="cred-body">Advanced Industry Program</p>
+                        <div class="cred-meta">
+                            <span class="cred-badge">COMPLETED</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- --- SECTION 4: CONTACT --- -->
+        <section class="chapter" id="contact" style="background: var(--black-deep); max-width: none;">
+            <h2 class="chapter-heading" style="margin-bottom: 2rem;">
+                LET'S<br><span>SCALE</span>
+            </h2>
+            <a href="mailto:anthony@filipinohomes.com" class="email-big">anthony@filipinohomes.com</a>
+        </section>
+
+    </main>
+
+    <!-- --- ENGINES --- -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
