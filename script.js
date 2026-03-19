@@ -41,7 +41,7 @@ if (localStorage.getItem('theme') === 'light') {
             scrollTrigger: {
                 trigger: venturesSection,
                 start: "top top",
-                end: "+=180%", // Shortened for a faster, less 'sticky' feel
+                end: "+=600%", // Dynamically extended for 7 cards
                 scrub: 0.5, // Reduced lag for more direct control
                 pin: true,
                 anticipatePin: 1,
