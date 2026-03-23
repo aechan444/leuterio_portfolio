@@ -459,9 +459,10 @@ body.light-mode .hero-img-bg {
 /* Background Atmospheric Shifts */
 body.aura-realty #ventures { background: radial-gradient(circle at center, #0D1B3E, #050B18 80%); }
 body.aura-gold #ventures { background: radial-gradient(circle at center, rgba(238, 49, 36, 0.2), var(--black-deep) 70%); }
-body.aura-rent #ventures { background: radial-gradient(circle at center, rgba(0, 46, 93, 0.4), var(--black-deep) 70%); }
+body.aura-rent #ventures { background: radial-gradient(circle at center, rgba(255, 85, 0, 0.2), var(--black-deep) 70%); }
 body.aura-dubai #ventures { background: radial-gradient(circle at center, rgba(212, 175, 55, 0.2), var(--black-deep) 70%); }
 body.aura-venture5 #ventures { background: radial-gradient(circle at center, rgba(0, 84, 166, 0.2), var(--black-deep) 70%); }
+body.aura-bayanihan #ventures { background: radial-gradient(circle at center, rgba(0, 84, 166, 0.2), var(--black-deep) 70%); }
 
 .ventures-track {
     display: flex;
@@ -546,7 +547,7 @@ body.light-mode .monolith[data-index="03"] .monolith-main p {
     font-weight: 400 !important; 
     opacity: 1 !important;
 }
-body.light-mode .monolith[data-index="03"] .monolith-index { color: #FF5500 !important; }
+body.light-mode .monolith[data-index="03"] .monolith-index { color: #002E5D !important; }
 
 body.light-mode .monolith[data-index="04"] { 
     background: linear-gradient(135deg, 
@@ -563,18 +564,47 @@ body.light-mode .monolith[data-index="04"] .monolith-main p {
 body.light-mode .monolith[data-index="04"] .monolith-index { color: #AF8917 !important; }
 
 body.light-mode .monolith[data-index="05"] { 
-    background: linear-gradient(135deg, 
-        #0054A6 0%, #0054A6 30%, 
-        #0A1224 30%, #0A1224 100%) !important; 
-    border-color: #0054A6 !important; 
+    border-left: 8px solid transparent !important; /* Base for border-image */
+    border-image: linear-gradient(to bottom, #EE3124 50%, #0054A6 50%) 1 !important;
+    background: #FFFFFF !important; 
+    box-shadow: 0 40px 100px rgba(0, 0, 0, 0.1) !important;
 }
-body.light-mode .monolith[data-index="05"] .monolith-main h3 { color: #FFFFFF !important; }
-body.light-mode .monolith[data-index="05"] .monolith-main p { 
-    color: #FFFFFF !important; 
-    font-weight: 400 !important; 
-    opacity: 1 !important;
+
+body.light-mode .monolith[data-index="05"] .monolith-main h3 { 
+    color: #002E5D !important; /* Specific user-requested brand blue */
+    line-height: 0.8 !important;
+    font-weight: 900 !important;
+    text-shadow: none !important;
+    font-size: clamp(2rem, 5vw, 4rem) !important;
 }
-body.light-mode .monolith[data-index="05"] .monolith-index { color: #0054A6 !important; }
+
+body.light-mode .monolith[data-index="05"] .monolith-main p {
+    color: #444444 !important;
+    font-weight: 500 !important;
+}
+
+body.light-mode .monolith[data-index="06"] .monolith-index { 
+    color: #EE3124 !important; /* Red index as per screenshot */
+}
+
+body.light-mode .monolith[data-index="06"] { 
+    border-left: 8px solid #002E5D !important; /* Solid brand blue border */
+    background: #FFFFFF !important; 
+    box-shadow: 0 40px 100px rgba(0, 0, 0, 0.1) !important;
+}
+
+body.light-mode .monolith[data-index="06"] .monolith-main h3 { 
+    color: #002E5D !important; /* Unified with FH GLOBAL */
+    line-height: 0.8 !important;
+    font-weight: 900 !important;
+    text-shadow: none !important;
+    font-size: clamp(2rem, 5vw, 4rem) !important;
+}
+
+body.light-mode .monolith[data-index="06"] .monolith-main p {
+    color: #444444 !important;
+    font-weight: 500 !important;
+}
 body.light-mode .monolith-main h3 { color: #0B0F19 !important; opacity: 1 !important; z-index: 10; }
 body.light-mode .monolith-main p { color: #1A1A1A !important; opacity: 1 !important; z-index: 10; font-weight: 500; margin-top: -0.5rem; }
 body.light-mode .monolith-index { color: #9B111E !important; font-weight: 800 !important; opacity: 1 !important; }
@@ -586,6 +616,7 @@ body.light-mode.aura-gold #ventures { background: radial-gradient(circle at cent
 body.light-mode.aura-rent #ventures { background: radial-gradient(circle at center, rgba(255, 85, 0, 0.15), #FFFFFF 85%); }
 body.light-mode.aura-dubai #ventures { background: radial-gradient(circle at center, rgba(175, 137, 23, 0.15), #FFFFFF 85%); }
 body.light-mode.aura-venture5 #ventures { background: radial-gradient(circle at center, rgba(0, 84, 166, 0.1), #FFFFFF 85%); }
+body.light-mode.aura-bayanihan #ventures { background: radial-gradient(circle at center, rgba(0, 46, 93, 0.1), #FFFFFF 85%); }
 
 body.light-mode .award-content h3 { color: #0B0F19; }
 body.light-mode .award-content p { color: #AF8917; }
@@ -850,42 +881,56 @@ body.light-mode #hero {
 }
 
 /* Tight wrapping adjustments */
-.monolith[data-index="01"] .monolith-house-decor { width: 400px; }
+
 .monolith[data-index="02"] .monolith-house-decor { width: 250px; }
 .monolith[data-index="04"] .monolith-house-decor { width: 330px; }
 
-.monolith[data-index="01"] .decor-card { 
-    width: fit-content; 
-    position: relative;
-    margin-left: auto;
-}
-
-.monolith[data-index="02"] .decor-card { 
+.mini-logo-card { 
     width: fit-content; 
     height: fit-content;
     position: relative; 
-    left: -4rem; 
-    background: transparent;
-    border: none;
-    box-shadow: none;
-    backdrop-filter: none;
-}
-.monolith[data-index="02"] .decor-card::before,
-.monolith[data-index="02"] .decor-card::after {
-    display: none;
+    margin-left: auto;
+    z-index: 1;
 }
 
-/* Monolith 04: Floating Decor (No Glass Box) */
-.monolith[data-index="04"] .decor-card {
-    background: transparent;
-    border: none;
-    box-shadow: none;
-    backdrop-filter: none;
+.mini-logo-decor {
+    display: block;
+    width: 320px; /* Default size */
+    height: auto;
+    object-fit: contain;
+    z-index: 1;
+    filter: drop-shadow(0 20px 40px rgba(0,0,0,0.5));
 }
-.monolith[data-index="04"] .decor-card::before,
-.monolith[data-index="04"] .decor-card::after {
-    display: none;
+
+.monolith[data-index="02"] .mini-logo-decor {
+    width: 440px; /* Stays large for brand impact */
 }
+
+.monolith[data-index="03"] .mini-logo-decor {
+    width: 380px; /* Tuned middle ground for optimal size */
+}
+
+.monolith[data-index="03"] .monolith-index {
+    color: #FF5500 !important; /* Iconic Orange for Peak Visibility in Dark */
+}
+
+.monolith[data-index="04"] .mini-logo-decor {
+    width: 440px; /* Matched to other large brand logos */
+}
+
+.monolith[data-index="05"] .mini-logo-decor {
+    width: 500px; /* Refined balance */
+}
+
+.monolith[data-index="06"] .mini-logo-decor {
+    width: 440px; 
+    filter: none !important; /* User-requested shadow removal */
+}
+
+
+
+
+
 
 .monolith[data-index="01"] h3,
 .monolith[data-index="01"] p,
@@ -1019,7 +1064,7 @@ body.light-mode #hero {
     color: rgba(255, 255, 255, 0.9);
 }
 
-/* MONOLITH 05: THE NEXT - Venture 05 Branding */
+/* MONOLITH 05: THE NEXT - Venture 05 Branding (Restored Dark Mode) */
 .monolith[data-index="05"] {
     border-left: 8px solid #0054A6; /* Sapphire Blue accent */
     background: 
@@ -1037,6 +1082,44 @@ body.light-mode #hero {
 .monolith[data-index="05"] p {
     color: rgba(255, 255, 255, 0.9);
 }
+
+/* MONOLITH 06: BAYANIHAN (Synced with FH Global Dark) */
+.monolith[data-index="06"] {
+    border-left: 8px solid #0054A6; /* Sapphire Blue accent */
+    background: 
+        radial-gradient(at 0% 0%, rgba(0, 84, 166, 0.2) 0%, transparent 60%),
+        radial-gradient(at 100% 100%, rgba(0, 84, 166, 0.08) 0%, transparent 50%),
+        #0A101C;
+    box-shadow: 0 40px 100px rgba(0, 0, 0, 0.95);
+}
+
+.monolith[data-index="06"] h3 {
+    color: #FFFFFF;
+    text-shadow: 0 4px 15px rgba(0, 84, 166, 0.3);
+}
+
+.monolith[data-index="06"] p {
+    color: rgba(255, 255, 255, 0.9);
+}
+
+/* MONOLITH 07: UPCOMING CHAPTER */
+.monolith[data-index="07"] {
+    border-left: 8px solid rgba(255, 255, 255, 0.2); 
+    background: 
+        radial-gradient(at 0% 0%, rgba(255, 255, 255, 0.05) 0%, transparent 60%),
+        #0A101C;
+    box-shadow: 0 40px 100px rgba(0, 0, 0, 0.95);
+}
+
+.monolith[data-index="07"] h3 {
+    color: rgba(255, 255, 255, 0.3) !important; /* Low opacity for development state */
+    text-transform: uppercase;
+}
+
+.monolith[data-index="07"] p {
+    color: rgba(255, 255, 255, 0.2);
+}
+
 
 .monolith p {
     font-size: clamp(0.9rem, 1.5vw, 1.2rem);
