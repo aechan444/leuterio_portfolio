@@ -79,6 +79,60 @@ if (localStorage.getItem('theme') === 'light') {
         });
     });
 
+    // 3. Mission Visuals Engine
+    const missionSection = document.querySelector('#about-mission');
+    
+    if (missionSection) {
+        // Floating Badge Animation
+        const floatingBadge = document.querySelector('.floating-mission-badge');
+        if (floatingBadge) {
+            gsap.to(floatingBadge, {
+                scrollTrigger: {
+                    trigger: missionSection,
+                    start: "top bottom",
+                    end: "bottom top",
+                    scrub: 1.5,
+                },
+                y: -150,
+                rotate: 5,
+                ease: "none"
+            });
+        }
+    }
+
+    // 4. Coaching Methodology Interactions
+    const coachingSection = document.querySelector('.coaching-section');
+    const coachingItems = document.querySelectorAll('.coaching-item');
+    
+    // List Interaction
+    if (coachingItems.length > 0) {
+        coachingItems.forEach(item => {
+            item.addEventListener('mouseenter', () => {
+                coachingItems.forEach(i => i.classList.remove('active'));
+                item.classList.add('active');
+            });
+        });
+    }
+
+    // Visual Parallax
+    if (coachingSection) {
+        const gfxElements = coachingSection.querySelectorAll('.gfx-glow-text, .gfx-floating-card, .gfx-floating-icon');
+        
+        gfxElements.forEach(el => {
+            const speed = el.getAttribute('data-speed') || 1;
+            gsap.to(el, {
+                scrollTrigger: {
+                    trigger: coachingSection,
+                    start: "top bottom",
+                    end: "bottom top",
+                    scrub: 1
+                },
+                y: (i, target) => -100 * speed,
+                ease: "none"
+            });
+        });
+    }
+
     // Handle Resize
     window.addEventListener('resize', () => {
         ScrollTrigger.refresh();
