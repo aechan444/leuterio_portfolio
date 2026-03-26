@@ -1,5 +1,6 @@
 import PortfolioClient from '../components/PortfolioClient';
 import { supabase } from '../lib/supabase';
+import { getBucketImages } from '../lib/portfolio-data';
 import { fallbackCoaching, fallbackEcosystem, fallbackDevelopers, fallbackCredentials, fallbackAwards, fallbackNews } from '../lib/mockData';
 
 export const revalidate = 0;
@@ -11,6 +12,7 @@ export default async function Page() {
   const { data: credentialsData } = await supabase.from('credentials').select('*');
   const { data: awardsData } = await supabase.from('awards').select('*');
   const { data: newsData } = await supabase.from('news_articles').select('*');
+  const bucketImages = await getBucketImages();
 
   const mergeData = (fallback: any[], supabaseData: any[] | null, key: string) => {
     if (!supabaseData || supabaseData.length === 0) return fallback;
@@ -40,6 +42,7 @@ export default async function Page() {
         initialCredentials={activeCredentials}
         initialAwards={activeAwards}
         initialNews={activeNews}
+        bucketImages={bucketImages}
       />
     </main>
   );

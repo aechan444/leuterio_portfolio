@@ -4,11 +4,15 @@
 
 This document completes the Week 9 requirement for:
 
-1. optimized ESP32 code for memory, speed, and power efficiency
+1. optimized ESP32 code in Python for memory, speed, and power efficiency
 2. added error handling, timeouts, and fail-safes
-3. improved stability through clearer integration of firmware, wiring, and enclosure planning
+3. improved stability through clearer integration of controller code, wiring, and enclosure planning
 
-The matching firmware file is `esp32_smart_shoe_organizer.ino`.
+The matching controller files are:
+
+- `main.py` for ESP32 MicroPython in Thonny
+- `flask_dashboard.py` for the laptop dashboard
+- `templates/dashboard.html` for the dashboard interface
 
 ## Project Goal
 
@@ -49,9 +53,9 @@ For a realistic student prototype, the final controlled inputs and outputs are:
 - buzzer for fault notification
 - status LED for local state indication
 
-## Firmware Design Summary
+## Python System Design Summary
 
-The ESP32 code is implemented as a non-blocking state machine with these modes:
+The ESP32 MicroPython code is implemented as a non-blocking state machine with these modes:
 
 - `MODE_IDLE`
 - `MODE_MONITORING`
@@ -71,26 +75,26 @@ This approach is better than a long delay-based sequence because it:
 
 ### 1. Memory Optimization
 
-The firmware improves memory efficiency by:
+The Python controller improves memory efficiency by:
 
 - using `const` values for thresholds and timings
 - using `uint8_t`, `uint16_t`, and `uint32_t` where appropriate
 - using a compact `enum` for system mode
-- using `F()` strings in serial output to reduce RAM use
-- avoiding dynamic `String` operations
+- using small dictionaries and fixed thresholds
+- avoiding unnecessary object creation inside the main loop
 
 ### 2. Speed Optimization
 
-The firmware improves execution speed by:
+The Python controller improves execution speed by:
 
 - sampling sensors on fixed intervals with `millis()`
 - averaging analog reads to reduce noise without heavy processing
 - using direct state transitions instead of nested blocking sequences
-- reporting status only every few seconds instead of spamming serial output
+- syncing with Flask only every few seconds instead of sending every loop cycle
 
 ### 3. Power Optimization
 
-The firmware improves power efficiency by:
+The Python controller improves power efficiency by:
 
 - running actuators only when thresholds require it
 - stopping pump and brush after strict burst durations
@@ -125,13 +129,13 @@ The prototype uses configurable thresholds stored in firmware:
 - wet-shoe recovery threshold
 - dust threshold
 
-These values can be recalibrated during testing without changing the system structure.
+These values can be recalibrated during testing in `main.py` without changing the system structure.
 
 ## Error Handling, Timeouts, and Fail-Safes
 
 ### Implemented Error Handling
 
-The firmware now checks for:
+The Python controller now checks for:
 
 - invalid DHT22 readings
 - suspicious analog values near ADC limits
@@ -162,7 +166,7 @@ To satisfy Week 9 robustness requirements, the firmware includes:
 
 ## Recommended Serial Monitoring Output
 
-The firmware reports:
+The Flask dashboard and ESP32 status exchange report:
 
 - current mode
 - shoe presence
@@ -187,18 +191,27 @@ For a prototype, the intelligence layer is a rule-based decision engine rather t
 
 This keeps the project credible and technically explainable.
 
+## Flask Dashboard Workflow
+
+1. flash MicroPython to the ESP32
+2. open Thonny and save `main.py` to the ESP32 as `main.py`
+3. edit Wi-Fi credentials and Flask server IP in `main.py`
+4. install Flask on the laptop using `requirements-flask-dashboard.txt`
+5. run `python flask_dashboard.py`
+6. power the ESP32 and monitor live status from the browser
+
 ## Suggested Demonstration Flow
 
 1. insert a shoe and close the chamber
-2. allow the system to stabilize and read sensors
-3. show serial values for humidity, odor, and moisture
-4. trigger one of the cleaning modes
+2. allow the MicroPython controller to stabilize and read sensors
+3. show live Flask values for humidity, odor, and moisture
+4. trigger `dry`, `deodorize`, or `clean` from the Flask dashboard
 5. show automatic stop after threshold recovery or timeout
 6. open the chamber during operation to prove the fault interlock works
 
 ## Week 9 Robustness Checklist
 
-- optimized firmware uses fixed-size variables and no dynamic strings
+- optimized Python controller uses fixed thresholds and a small state machine
 - non-blocking state machine is used instead of long delays
 - each actuator has a defined runtime limit
 - door switch acts as a safety interlock
@@ -209,4 +222,4 @@ This keeps the project credible and technically explainable.
 
 ## Conclusion
 
-The project is now aligned with the Week 9 requirement because the firmware and documents no longer describe only a concept. They define an implementable ESP32-based prototype with optimized sensor handling, controlled actuation, timeout-based protection, and concrete fail-safe behavior suitable for demonstration, testing, and documentation.
+The project is now aligned with the Week 9 requirement because the Python controller and Flask dashboard no longer describe only a concept. They define an implementable ESP32-based prototype with optimized sensor handling, controlled actuation, timeout-based protection, and concrete fail-safe behavior suitable for demonstration, testing, and documentation.

@@ -7,7 +7,8 @@ export default function PortfolioClient({
   initialDevelopers,
   initialCredentials,
   initialAwards,
-  initialNews
+  initialNews,
+  bucketImages = []
 }: any) {
 
   const [preloaderDone, setPreloaderDone] = useState(false);
@@ -611,6 +612,34 @@ export default function PortfolioClient({
             )}
           </div>
         </section>
+
+        {/* ── MEDIA VAULT ───────────────────────────────────────── */}
+        {bucketImages.length > 0 && (
+          <section className="chapter" id="vault">
+            <h2 className="chapter-heading">
+              MEDIA<br /><span>VAULT</span>
+            </h2>
+            <div style={{ 
+              display: 'grid', 
+              gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))', 
+              gap: '2rem',
+              marginTop: '15vh'
+            }}>
+              {bucketImages.map((img: any, i: number) => (
+                <div key={i} className="award-item reveal" style={{ height: 'auto' }}>
+                  <div className="award-visual" style={{ height: '350px' }}>
+                    <div className="award-img-container">
+                      <img src={img.url} alt={img.name} style={{ opacity: 1 }} />
+                    </div>
+                  </div>
+                  <div className="award-content">
+                    <p style={{ fontSize: '0.65rem', opacity: 0.5 }}>{img.name}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </section>
+        )}
 
         {/* ── CONTACT FORM ─────────────────────────────────────── */}
         <section className="connect-section" id="contact">

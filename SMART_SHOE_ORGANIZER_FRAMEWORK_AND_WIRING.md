@@ -13,7 +13,7 @@ This document completes the hardware side of Week 9 by adding:
 - electrical protection notes
 - a mechanical and wiring robustness checklist
 
-The wiring below matches `esp32_smart_shoe_organizer.ino`.
+The wiring below matches the MicroPython controller file `main.py`.
 
 ## Conceptual Framework
 
@@ -30,10 +30,11 @@ The system follows an input-process-output structure guided by the AIDUA model.
 
 ### Process
 
-- ESP32 acquires and filters raw sensor readings
+- ESP32 running MicroPython acquires and filters raw sensor readings
 - rule-based decision logic interprets chamber condition
 - safety checks verify sensor health and door status
 - the controller selects idle, monitoring, drying, deodorizing, cleaning, or fault mode
+- status is posted to a Flask dashboard over Wi-Fi
 
 ### Output
 
@@ -93,7 +94,7 @@ The system follows an input-process-output structure guided by the AIDUA model.
 - Keep wet-zone devices on a separate power path from the ESP32 logic supply.
 - If an analog sensor module outputs more than 3.3V, add a voltage divider before the ESP32 ADC pin.
 
-## ESP32 Pin Assignment
+## ESP32 Pin Assignment for MicroPython
 
 ```text
 DHT22 DATA          -> GPIO4
@@ -287,7 +288,7 @@ Status LED
 
 ## Week 9 Robustness Checklist
 
-- pin assignments match the actual firmware
+- pin assignments match the actual `main.py` controller
 - no actuator is wired directly to the ESP32
 - all 12V loads use relay or MOSFET isolation
 - door switch is included for chamber interlock

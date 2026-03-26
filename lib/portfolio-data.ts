@@ -1,4 +1,4 @@
-import { supabase } from "@/lib/supabase";
+import { supabase } from "./supabase";
 
 type PortfolioMetrics = {
   statusLabel: string;
@@ -47,5 +47,24 @@ export async function getPortfolioMetrics(): Promise<PortfolioMetrics> {
       eventsCount: null,
       inquiriesCount: null,
     };
+  }
+}
+
+export async function getBucketImages() {
+  try {
+    const { data, error } = await supabase.storage.from('portfolio_images').list('uploads');
+    if (error) throw error;
+
+    return data.map(file => {
+      const { data: { publicUrl } } = supabase.storage.from('portfolio_images').getPublicUrl(`uploads/${file.name}`);
+      return {
+        name: file.name,
+        url: publicUrl,
+        metadata: file.metadata
+      };
+    });
+  } catch (error) {
+    console.error("Error fetching bucket images:", error);
+    return [];
   }
 }

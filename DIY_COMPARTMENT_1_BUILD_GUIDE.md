@@ -10,7 +10,7 @@ Compartment 1 is the main prototype chamber. It acts as the:
 - drying chamber
 - safety interlocked enclosure
 
-This updated guide completes the Week 9 mechanical requirement by adding stability, mounting, enclosure, and maintenance details.
+This updated guide completes the Week 9 mechanical requirement by adding stability, mounting, enclosure, maintenance details, and support for a Thonny-loaded MicroPython controller with a Flask dashboard.
 
 ## Functional Goal
 
@@ -143,7 +143,7 @@ Add:
 - rubber padding so the door closes firmly
 - a door switch or magnetic reed sensor for interlock detection
 
-This supports the firmware fail-safe that stops operation when the chamber is opened.
+This supports the MicroPython fail-safe that stops operation when the chamber is opened.
 
 ### Step 3: Install the Shoe Positioning Base
 
@@ -267,9 +267,9 @@ Week 9 improvement:
 - avoid loose breadboard jumpers in the final demo unit
 - use heat-shrink and terminal blocks where possible
 
-### Step 11: Match the Firmware Pinout
+### Step 11: Match the MicroPython Pinout
 
-Use the same pin mapping as the firmware:
+Use the same pin mapping as `main.py`:
 
 ```text
 GPIO4  <- DHT22
@@ -291,7 +291,7 @@ GPIO2  -> Status LED
 Test the chamber in this order:
 
 1. verify shoe positioning and door closure
-2. verify sensor values in serial monitor
+2. verify sensor values in Thonny shell or the Flask dashboard
 3. verify fan output only
 4. verify pump burst only
 5. verify brush motor only
@@ -336,4 +336,4 @@ Test the chamber in this order:
 
 ## Conclusion
 
-Compartment 1 is now documented as a stable prototype chamber rather than just a conceptual box. The updated build guide supports the firmware fail-safes, improves vibration resistance, protects the electronics from moisture, and gives you a cleaner explanation for the Week 9 requirement on mechanical stability and robustness enhancement.
+Compartment 1 is now documented as a stable prototype chamber rather than just a conceptual box. The updated build guide supports the MicroPython fail-safes, improves vibration resistance, protects the electronics from moisture, and gives you a cleaner explanation for the Week 9 requirement on mechanical stability and robustness enhancement.
