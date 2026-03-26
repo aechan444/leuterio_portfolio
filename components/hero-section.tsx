@@ -23,7 +23,7 @@ export function HeroSection() {
         <br />
         LEUTERIO
       </h1>
-      <p className="hero-name reveal" style={{ fontSize: "1.2rem", fontWeight: "400", background: "none", color: "var(--white-ghost)", webkitTextFillColor: "var(--white-ghost)", filter: "none", marginTop: "-1rem", marginBottom: "2rem", textTransform: "none", letterSpacing: "normal", maxWidth: "600px" }}>
+      <p className="hero-name reveal" style={{ fontSize: "1.2rem", fontWeight: "400", background: "none", color: "var(--white-ghost)", WebkitTextFillColor: "var(--white-ghost)", filter: "none", marginTop: "-1rem", marginBottom: "2rem", textTransform: "none", letterSpacing: "normal", maxWidth: "600px" }}>
         Helping agents, team leaders, and founders build high-performance systems and ecosystems. 
         Leveraging 2 decades of leadership as the founder of Filipino Homes & Leuterio Realty.
       </p>
