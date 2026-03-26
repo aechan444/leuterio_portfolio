@@ -4,385 +4,298 @@
 
 Design and Development of an AI-Driven IoT Smart Shoe Organizer with Automated Cleaning System for Personal Use Using the AIDUA Model
 
+## Week 9 Objective
+
+This document completes the hardware side of Week 9 by adding:
+
+- stable pin mapping for the ESP32 firmware
+- safer wiring practices for sensors and actuators
+- electrical protection notes
+- a mechanical and wiring robustness checklist
+
+The wiring below matches `esp32_smart_shoe_organizer.ino`.
+
 ## Conceptual Framework
 
-The conceptual framework of the system is based on the relationship between **input, process, and output**, guided by the **AIDUA model**.
-
-## AIDUA Model Structure
-
-- **A - Acquisition**
-  The system gathers real-time data from sensors installed inside the shoe organizer.
-- **I - Interpretation**
-  The microcontroller and decision logic interpret the collected sensor values.
-- **D - Decision**
-  The AI or rule-based engine decides whether to store, dry, deodorize, or clean the shoes.
-- **U - Utilization**
-  The interpreted data is displayed in the IoT app or dashboard for user monitoring.
-- **A - Action**
-  The system activates the correct actuators such as fan, deodorizer, or cleaning unit.
-
-## Input-Process-Output Framework
+The system follows an input-process-output structure guided by the AIDUA model.
 
 ### Input
 
-The system receives data from the following components:
+- MQ-135 gas sensor
+- DHT22 temperature and humidity sensor
+- moisture sensor
+- optional dust sensor
+- IR shoe presence sensor
+- door limit switch
 
-#### 🧪 Odor Sensor Components
+### Process
 
-- **MQ-135 Gas Sensor**
-  Detects ammonia, alcohol, benzene, and other gases commonly associated with shoe odor.
-  This is the recommended odor sensor for the project.
+- ESP32 acquires and filters raw sensor readings
+- rule-based decision logic interprets chamber condition
+- safety checks verify sensor health and door status
+- the controller selects idle, monitoring, drying, deodorizing, cleaning, or fault mode
 
-- **MQ-3 Gas Sensor**
-  Detects alcohol-related gases and can support sweat-related odor monitoring.
+### Output
 
-- **MQ-2 Gas Sensor**
-  Detects smoke and combustible gases. Less specific for odor, but still usable as an alternative.
+- fan activation
+- pump activation
+- brush motor activation
+- buzzer alarm
+- status LED indication
+- serial or future IoT status reporting
 
-### Recommended odor sensor
+## AIDUA Mapping
 
-- **MQ-135**
+- Acquisition: all sensors are sampled by the ESP32
+- Interpretation: thresholds convert raw values into condition flags
+- Decision: the controller selects the correct operating mode
+- Utilization: the resulting status can be logged or displayed
+- Action: relays or drivers energize the required outputs
 
-#### 💧 Dirt / Condition Detection Components
+## Recommended Final Hardware Set
 
-- **DHT11 or DHT22**
-  Measures temperature and humidity inside the organizer.
-  High humidity indicates possible bacterial growth, odor buildup, or damp shoes.
+### Core Controller
 
-- **GP2Y1010AU0F Dust Sensor**
-  Optional component for detecting fine dust or particles inside the organizer.
+- ESP32 DevKit
 
-- **Moisture Sensor**
-  Can be repurposed to detect wet shoes or damp conditions.
-  If moisture is detected, the system can trigger drying or cleaning mode.
+### Sensors
 
-#### Supporting Component
+- MQ-135 odor sensor module
+- DHT22
+- moisture sensor module
+- IR obstacle sensor for shoe detection
+- door switch or magnetic reed switch
+- optional GP2Y1010AU0F dust sensor
 
-- **ESP32 Microcontroller**
-  Reads sensor data, processes decision rules, and sends data to the cloud or mobile app.
+### Actuators
 
-## Process
+- 12V DC fan or blower
+- 12V mini pump
+- 12V geared brush motor
+- active buzzer
+- status LED
 
-The process stage includes the following:
+### Driver and Protection Parts
 
-1. the sensors collect odor, humidity, temperature, dust, and moisture data
-2. the ESP32 reads and converts sensor signals into usable values
-3. the AIDUA model interprets the condition inside the organizer
-4. the AI or rule-based logic decides whether cleaning is required
-5. the system sends the data to an IoT dashboard or mobile app
-6. the system activates the needed cleaning or drying component
+- 3-channel relay board or separate MOSFET drivers
+- flyback protection if using transistor or MOSFET stages
+- fuse on the 12V input
+- common ground between 12V supply and ESP32 logic
+- terminal blocks or lever connectors
+- heat-shrink tubing
+- cable ties and cable clamps
 
-## Output
+## Important Power and Logic Notes
 
-The system produces the following outputs:
+- The ESP32 uses 3.3V logic.
+- Do not drive the fan, pump, or motor directly from ESP32 GPIO pins.
+- Use relays or MOSFET drivers for all 12V loads.
+- Keep wet-zone devices on a separate power path from the ESP32 logic supply.
+- If an analog sensor module outputs more than 3.3V, add a voltage divider before the ESP32 ADC pin.
 
-- automated drying
-- automated deodorizing
-- cleaning activation
-- app notification
-- compartment status display
-- cleaning history log
-- smart maintenance recommendation
-
-## Conceptual Paradigm
+## ESP32 Pin Assignment
 
 ```text
-INPUT
-- MQ-135 gas sensor
-- DHT11/DHT22
-- Dust sensor
-- Moisture sensor
-- Shoe presence input
-
-        ↓
-
-PROCESS
-- ESP32 data acquisition
-- AIDUA interpretation
-- AI/rule-based decision-making
-- IoT cloud/app update
-
-        ↓
-
-OUTPUT
-- Fan activation
-- Deodorizer activation
-- Cleaning cycle
-- Drying cycle
-- User notification
-- Smart maintenance feedback
+DHT22 DATA          -> GPIO4
+MQ-135 AO           -> GPIO34
+Moisture AO         -> GPIO35
+Dust Sensor VO      -> GPIO32
+Dust LED Control    -> GPIO25
+IR Shoe Sensor      -> GPIO27
+Door Switch         -> GPIO26
+Fan Relay           -> GPIO18
+Pump Relay          -> GPIO19
+Brush Relay         -> GPIO23
+Buzzer              -> GPIO5
+Status LED          -> GPIO2
 ```
 
-## Simplified Conceptual Explanation
+## Detailed Wiring Guide
 
-The smart shoe organizer detects the internal condition of the stored shoes using odor, humidity, moisture, and optional dust sensors. The ESP32 processes the sensor readings and applies the AIDUA model to interpret the condition. Based on the result, the system decides whether the shoes only need storage, drying, deodorizing, or a full cleaning cycle. The results are then displayed in the IoT interface and the required actuator is activated automatically.
-
-## Hardware Wiring Guide
-
-This section uses the following core hardware:
-
-- ESP32
-- MQ-135 Gas Sensor
-- DHT11 or DHT22
-- Moisture Sensor
-- GP2Y1010AU0F Dust Sensor
-- fan or relay-controlled cleaning device
-
-## Important Wiring Note
-
-The ESP32 uses **3.3V logic**. Some sensors and modules may output **5V**, so voltage compatibility must be checked. If needed, use:
-
-- voltage divider
-- level shifter
-- transistor driver
-- relay module with proper isolation
-
-## 1. ESP32 + MQ-135 Gas Sensor
-
-### Purpose
-
-Detects odor-related gases from shoes.
-
-### Typical pins on MQ-135 module
-
-- `VCC`
-- `GND`
-- `AO` analog output
-- `DO` digital output
-
-### Recommended connection
-
-- `VCC` -> `VIN` or `5V` on ESP32 board if your board provides it
-- `GND` -> `GND`
-- `AO` -> ESP32 analog input pin such as `GPIO34`
-- `DO` -> optional digital pin such as `GPIO27`
-
-### Notes
-
-- Use `AO` for better odor-level monitoring.
-- The sensor requires preheating and calibration.
-- If the analog output exceeds safe ESP32 voltage, add voltage protection.
-
-## 2. ESP32 + DHT11 / DHT22
-
-### Purpose
-
-Measures humidity and temperature.
-
-### Pins
-
-- `VCC`
-- `DATA`
-- `GND`
-
-### Recommended connection
+### 1. DHT22
 
 - `VCC` -> `3.3V`
 - `DATA` -> `GPIO4`
 - `GND` -> `GND`
+- Add a `10k` pull-up resistor from `DATA` to `3.3V` if your module does not already include one.
 
-### Additional note
+### 2. MQ-135
 
-- Add a `10k ohm` pull-up resistor between `VCC` and `DATA` if the module does not already include one.
-- `DHT22` is more accurate than `DHT11`.
+- `VCC` -> regulated `5V`
+- `GND` -> `GND`
+- `AO` -> `GPIO34` through a voltage divider if the module output can exceed `3.3V`
 
-## 3. ESP32 + Moisture Sensor
+Notes:
 
-### Purpose
+- allow warm-up time before calibration
+- mount away from direct spray path
+- do not place it where foam can coat the sensing element
 
-Detects wet shoes or damp surfaces.
-
-### Typical pins
-
-- `VCC`
-- `GND`
-- `AO`
-- `DO`
-
-### Recommended connection
+### 3. Moisture Sensor
 
 - `VCC` -> `3.3V`
 - `GND` -> `GND`
 - `AO` -> `GPIO35`
-- `DO` -> optional `GPIO26`
 
-### Notes
+Notes:
 
-- Analog reading is preferred for measuring moisture level.
-- If metal-probe moisture sensors are used, corrosion may become an issue over time.
+- if using a metal-probe sensor, place it in a drip or dampness detection point instead of direct constant contact with liquid
+- capacitive moisture sensing is more durable than exposed resistive probes
 
-## 4. ESP32 + GP2Y1010AU0F Dust Sensor
+### 4. IR Shoe Presence Sensor
 
-### Purpose
+- `VCC` -> `3.3V` or module-rated supply
+- `GND` -> `GND`
+- `OUT` -> `GPIO27`
 
-Detects dust or fine particles inside the organizer.
+Notes:
 
-### Basic connection
+- mount where it confirms shoe insertion without seeing the brush or tray as a false target
+- use a rigid bracket to preserve alignment
 
-- `VLED` -> `5V`
-- `LED-GND` -> `GND`
-- `S-GND` -> `GND`
-- `Vo` -> analog input such as `GPIO32`
+### 5. Door Switch
+
+- one terminal -> `GPIO26`
+- one terminal -> `GND`
+- firmware uses `INPUT_PULLUP`, so the switch pulls the pin low when closed
+
+Notes:
+
+- a magnetic reed switch is easier to protect from moisture
+- a mechanical limit switch gives clearer physical actuation
+
+### 6. Dust Sensor
+
 - `VCC` -> `5V`
-- `LED` control pin -> digital pin such as `GPIO25`
+- `GND` -> `GND`
+- `VO` -> `GPIO32` with safe voltage verification
+- LED control -> `GPIO25`
 
-### Notes
+Notes:
 
-- This sensor usually needs a resistor and capacitor based on the sensor datasheet.
-- It is optional and should be treated as an advanced feature.
+- follow the sensor datasheet for resistor and capacitor requirements
+- treat this as optional if your prototype needs fewer parts
 
-## 5. ESP32 + Fan / Cleaning Actuator
+### 7. Fan Relay
 
-### Purpose
-
-Activates drying or cleaning devices.
-
-### Recommended method
-
-Do not connect a fan or motor directly to the ESP32 pin. Use:
-
-- relay module
-- MOSFET driver
-- transistor switch
-
-### Example relay connection
-
-- relay `IN` -> `GPIO18`
-- relay `VCC` -> `5V`
+- relay `IN1` -> `GPIO18`
+- relay `VCC` -> board-rated supply
 - relay `GND` -> `GND`
+- fan power path -> separate `12V` supply through relay contacts
 
-Then connect:
+### 8. Pump Relay
 
-- fan positive line through relay switching path
-- fan power from external supply if needed
+- relay `IN2` -> `GPIO19`
+- relay `VCC` -> board-rated supply
+- relay `GND` -> `GND`
+- pump power path -> separate `12V` supply through relay contacts
 
-## 6. ESP32 + Buzzer or Status LED
+### 9. Brush Motor Relay
 
-### Purpose
+- relay `IN3` -> `GPIO23`
+- relay `VCC` -> board-rated supply
+- relay `GND` -> `GND`
+- motor power path -> separate `12V` supply through relay contacts
 
-Provides local alerts and system status.
+### 10. Buzzer and Status LED
 
-### Buzzer
-
-- positive -> `GPIO19`
-- negative -> `GND`
-
-### LED
-
-- anode -> `GPIO23` through resistor
-- cathode -> `GND`
-
-## Suggested ESP32 Pin Assignment
-
-```text
-MQ-135 AO           -> GPIO34
-MQ-135 DO           -> GPIO27
-DHT11/DHT22 DATA    -> GPIO4
-Moisture Sensor AO  -> GPIO35
-Moisture Sensor DO  -> GPIO26
-Dust Sensor Vo      -> GPIO32
-Dust Sensor LED     -> GPIO25
-Relay/Fan Control   -> GPIO18
-Buzzer              -> GPIO19
-Status LED          -> GPIO23
-```
-
-## Text-Based Hardware Block Diagram
-
-```text
-                +----------------------+
-                |      MQ-135          |
-                |  Odor Gas Sensor     |
-                +----------+-----------+
-                           |
-                           v
-                +----------------------+
-                |        ESP32         |
-                | Data + Decision Unit |
-                +----+----+----+-------+
-                     |    |    |
-                     |    |    |
-                     |    |    +-------------------+
-                     |    |                        |
-                     v    v                        v
-            +------------+-----+        +------------------+
-            | DHT11/DHT22      |        | Moisture Sensor  |
-            | Temp/Humidity    |        | Wet Shoe Detect  |
-            +------------------+        +------------------+
-                     |
-                     v
-             +------------------+
-             | Dust Sensor      |
-             | Optional Input   |
-             +------------------+
-
-                     |
-                     v
-             +------------------+
-             | IoT Dashboard    |
-             | App / Cloud      |
-             +------------------+
-
-                     |
-                     v
-     +----------------+-------------------+
-     |                                    |
-     v                                    v
-+------------+                      +-------------+
-| Relay/Fan  |                      | Buzzer / LED|
-| Dryer Unit |                      | Notifications|
-+------------+                      +-------------+
-```
+- buzzer signal -> `GPIO5`
+- buzzer ground -> `GND`
+- LED anode -> `GPIO2` through a current-limiting resistor
+- LED cathode -> `GND`
 
 ## Wiring Summary Table
 
-| Component | Pin | Connect To ESP32 |
+| Component | Pin | ESP32 Connection |
 |---|---|---|
-| MQ-135 | AO | GPIO34 |
-| MQ-135 | DO | GPIO27 |
-| MQ-135 | VCC | 5V/VIN |
-| MQ-135 | GND | GND |
 | DHT22 | DATA | GPIO4 |
-| DHT22 | VCC | 3.3V |
-| DHT22 | GND | GND |
+| MQ-135 | AO | GPIO34 |
 | Moisture Sensor | AO | GPIO35 |
-| Moisture Sensor | DO | GPIO26 |
-| Dust Sensor | Vo | GPIO32 |
-| Dust Sensor | LED Control | GPIO25 |
-| Relay Module | IN | GPIO18 |
-| Buzzer | Signal | GPIO19 |
-| Status LED | Signal | GPIO23 |
+| Dust Sensor | VO | GPIO32 |
+| Dust Sensor | LED | GPIO25 |
+| IR Sensor | OUT | GPIO27 |
+| Door Switch | Signal | GPIO26 |
+| Fan Relay | IN | GPIO18 |
+| Pump Relay | IN | GPIO19 |
+| Brush Relay | IN | GPIO23 |
+| Buzzer | Signal | GPIO5 |
+| Status LED | Signal | GPIO2 |
 
-## Control Logic Example
+## Text Block Diagram
 
 ```text
-If MQ-135 value is high
-and humidity is high
-then activate deodorizing and drying
+SENSORS
+MQ-135
+DHT22
+Moisture
+Dust
+IR Presence
+Door Switch
 
-If moisture sensor detects wet shoes
-then activate drying mode
+        |
+        v
 
-If dust level is high
-then suggest cleaning cycle
+ESP32
+Data Acquisition
+Filtering
+Rule-Based Decision
+Safety Interlocks
 
-If all values are normal
-then maintain storage mode
+        |
+        v
+
+DRIVERS
+Relay / MOSFET Stage
+
+        |
+        v
+
+OUTPUTS
+Fan
+Pump
+Brush Motor
+Buzzer
+Status LED
 ```
 
-## Recommended Prototype Setup
+## Electrical Hardening for Week 9
 
-For a practical first prototype, use:
+### Required Protections
 
-1. ESP32
-2. MQ-135
-3. DHT22
-4. Moisture sensor
-5. relay-controlled fan
-6. buzzer or LED indicator
+- use a fused 12V input line
+- separate low-current logic wiring from motor and pump wiring
+- secure all joints with solder and heat-shrink or proper terminals
+- route signal wires away from motor leads to reduce noise
+- mount relays or drivers in the dry electronics box
+- add strain relief where cables enter the enclosure
 
-Add the dust sensor later if needed.
+### Noise and Reliability Controls
+
+- keep analog sensor wires short
+- twist or bundle noisy motor wires separately
+- share a solid common ground
+- avoid loose jumper wires for final demo wiring
+- use screw terminals, JST connectors, or Dupont housings with retention
+
+## Mechanical Stability and Mounting Notes
+
+- mount sensors on brackets, not on hanging wires
+- secure relay boards and ESP32 to standoffs
+- keep the electronics box outside the wet chamber
+- add cable clamps so movement of the door or fan does not pull on solder joints
+- keep the MQ-135 and DHT22 out of direct foam spray
+
+## Week 9 Robustness Checklist
+
+- pin assignments match the actual firmware
+- no actuator is wired directly to the ESP32
+- all 12V loads use relay or MOSFET isolation
+- door switch is included for chamber interlock
+- wiring is tied down and strain-relieved
+- wet-zone and dry-zone electronics are physically separated
+- analog outputs are checked for 3.3V compatibility
+- fused supply and common grounding are provided
 
 ## Conclusion
 
-The conceptual framework shows that the smart shoe organizer works by collecting environmental and condition data, processing it through the AIDUA model, making intelligent cleaning decisions, and activating the proper response through connected actuators. The ESP32 acts as the main controller, while the MQ-135, DHT22, moisture sensor, and optional dust sensor provide the data needed for AI-assisted decision-making.
+The hardware framework is now aligned with the optimized ESP32 controller. The wiring plan supports safe operation, simpler debugging, and a more defensible prototype because it explicitly addresses electrical isolation, stable sensor mounting, and fail-safe chamber operation.

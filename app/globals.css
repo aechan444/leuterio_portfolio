@@ -1,0 +1,139 @@
+@import "../style.css";
+
+:root {
+  /* --- The Elite 4-Color Dragon Palette --- */
+
+  /* 1. OBSIDIAN BLACK */
+  --black-deep: #0B0F19;
+  /* Midnight Cinematic - Cool Royal Depth */
+
+  /* 2. PRISTINE WHITE */
+  --white-stark: #FFFFFF;
+  --white-ghost: rgba(255, 255, 255, 0.4);
+
+  /* 3. MAJESTIC LIQUID GOLD */
+  --gold-majestic: #D4AF37;
+  /* Primary Royal Gold */
+  --gold-shimmer: #F3E280;
+  /* Silk Highlight */
+  --gold-deep: #4D3D0A;
+  /* Bronze Shadow */
+  --gold-glow: rgba(212, 175, 55, 0.3);
+
+  /* 4. CRYSTALLIZED RUBY */
+  --ruby-crystal: #9B111E;
+  /* Crystallized Ruby */
+  --ruby-glow: rgba(155, 17, 30, 0.5);
+
+  /* UI Logic */
+  --border: rgba(255, 255, 255, 0.1);
+  --glass: rgba(15, 15, 15, 0.9);
+  --ease: cubic-bezier(0.16, 1, 0.3, 1);
+
+  /* Legacy variable mapping for compatibility */
+  --bg: var(--black-deep);
+  --text: var(--white-stark);
+  --muted: var(--white-ghost);
+  --accent: var(--ruby-crystal);
+  --accent-dark: #7d1f18;
+  --gold: var(--gold-majestic);
+  --shadow: 0 24px 70px rgba(0, 0, 0, 0.5);
+  --line: var(--border);
+}
+
+body.light-mode {
+  --black-deep: #F8F9FA;
+  --white-stark: #0B0F19;
+  --white-ghost: rgba(11, 15, 25, 0.6);
+  --gold-majestic: #B8860B;
+  --ruby-crystal: #800000;
+  --border: rgba(0, 0, 0, 0.1);
+  --glass: rgba(255, 255, 255, 0.9);
+  --bg: var(--black-deep);
+  --text: var(--white-stark);
+}
+
+/* Specificity fix for Hero padding to prevent TopBar overlap */
+section#hero {
+  padding-top: clamp(100px, 15vh, 160px) !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: center !important;
+}
+
+/* --- Buttons --- */
+.button, .big-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 28px;
+  border-radius: 999px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  transition: all 0.3s var(--ease);
+  cursor: pointer;
+  border: none;
+  text-decoration: none;
+}
+
+.button-primary, .big-btn {
+  background: var(--gold-majestic);
+  color: var(--black-deep);
+}
+
+.button-secondary {
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--white-stark);
+}
+
+.button:hover, .big-btn:hover {
+  transform: translateY(-3px);
+  filter: brightness(1.2);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+}
+
+/* Support for Reveal Engine in PortfolioClient */
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s var(--ease), transform 0.8s var(--ease);
+}
+
+.reveal.vis {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* --- Preloader --- */
+.preloader {
+  position: fixed;
+  inset: 0;
+  background: #0B0F19; /* Match obsidian black */
+  z-index: 99999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.8s ease, visibility 0.8s ease;
+}
+
+.preloader.done {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.preloader-text {
+  font-family: var(--font-mono), monospace;
+  font-size: clamp(1rem, 3vw, 1.5rem);
+  letter-spacing: 0.5em;
+  text-transform: uppercase;
+  color: var(--gold-majestic);
+  animation: preloader-pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes preloader-pulse {
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 1; }
+}
