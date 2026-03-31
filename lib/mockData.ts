@@ -23,9 +23,9 @@ export const fallbackDevelopers = [
 ];
 
 export const fallbackNews = [
-    { id: '1', image_url: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&q=80&w=800', tag: 'International', title: 'Bangkok summit to open dollar-earning chances for brokers', published_date: 'Jul 17, 2023', description: 'Expanding the Filipino real estate expertise across ASEAN borders.' },
-    { id: '2', image_url: 'https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80&w=800', tag: 'Technology', title: 'ASEAN Real Estate Summit by FilipinoHomes.com', published_date: 'Jul 17, 2023', description: 'Unlocking the power of PropTech and AI in ASEAN real estate.' },
-    { id: '3', image_url: 'https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&q=80&w=800', tag: 'Strategy', title: 'FilipinoHomes.com Expands to International Markets', published_date: 'Jun 5, 2023', description: 'Bringing Philippine property investment closer to OFWs globally.' }
+    { id: '1', image_url: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&q=80&w=800', tag: 'Global', title: 'Leuterio Realty Named Top Brokerage in Southeast Asia', published_date: 'March 15, 2025', description: 'Continuing the legacy of excellence with record-breaking sales in Q1 2025.' },
+    { id: '2', image_url: 'https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80&w=800', tag: 'PropTech', title: 'Filipino Homes Unveils AI-Driven Property Matching', published_date: 'February 28, 2025', description: 'Revolutionizing how Filipinos find their dream homes using advanced neural networks.' },
+    { id: '3', image_url: 'https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&q=80&w=800', tag: 'Expansion', title: 'Anthony Leuterio Announces Dubai Partnership', published_date: 'January 10, 2025', description: 'Expanding the ecosystem to the UAE to better serve OFWs in the Middle East.' }
 ];
 
 export const fallbackCredentials = [

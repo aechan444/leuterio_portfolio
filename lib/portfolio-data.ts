@@ -50,21 +50,44 @@ export async function getPortfolioMetrics(): Promise<PortfolioMetrics> {
   }
 }
 
-export async function getBucketImages() {
+export async function getPublicHomesPhNews() {
+  const RSS_URL = "https://news.homes.ph/rss/";
+  
   try {
-    const { data, error } = await supabase.storage.from('portfolio_images').list('uploads');
-    if (error) throw error;
-
-    return data.map(file => {
-      const { data: { publicUrl } } = supabase.storage.from('portfolio_images').getPublicUrl(`uploads/${file.name}`);
-      return {
-        name: file.name,
-        url: publicUrl,
-        metadata: file.metadata
-      };
+    const response = await fetch(RSS_URL, {
+      next: { revalidate: 3600 } // Cache for 1 hour
     });
+
+    if (!response.ok) throw new Error("Failed to fetch RSS");
+    
+    const xml = await response.text();
+    
+    // Simple regex-based XML parser for RSS items
+    const items = xml.match(/<item>[\s\S]*?<\/item>/g) || [];
+    
+    return items.map(item => {
+      const title = item.match(/<title><!\[CDATA\[([\s\S]*?)\]\]><\/title>/)?.[1] || 
+                    item.match(/<title>([\s\S]*?)<\/title>/)?.[1] || "";
+      const link = item.match(/<link>([\s\S]*?)<\/link>/)?.[1] || "";
+      const pubDate = item.match(/<pubDate>([\s\S]*?)<\/pubDate>/)?.[1] || "";
+      const description = item.match(/<description><!\[CDATA\[([\s\S]*?)\]\]><\/description>/)?.[1] || 
+                          item.match(/<description>([\s\S]*?)<\/description>/)?.[1] || "";
+      
+      // Extract featured image if present in media:content or content:encoded
+      const image = item.match(/<media:content[^>]*url="([\s\S]*?)"/)?.[1] || 
+                    item.match(/<img[^>]*src="([\s\S]*?)"/)?.[1] || 
+                    "https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&q=80&w=1200";
+
+      return {
+        title: title.trim(),
+        link: link.trim(),
+        published_at: pubDate,
+        content_preview: description.replace(/<[^>]*>/g, '').substring(0, 160) + '...',
+        thumbnail_url: image
+      };
+    }).slice(0, 6); // Get latest 6
   } catch (error) {
-    console.error("Error fetching bucket images:", error);
+    console.error("Error fetching public RSS news:", error);
     return [];
   }
 }

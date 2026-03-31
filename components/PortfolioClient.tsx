@@ -7,8 +7,7 @@ export default function PortfolioClient({
   initialDevelopers,
   initialCredentials,
   initialAwards,
-  initialNews,
-  bucketImages = []
+  initialNews
 }: any) {
 
   const [preloaderDone, setPreloaderDone] = useState(false);
@@ -492,17 +491,19 @@ export default function PortfolioClient({
             <h2>Latest <em>Updates</em></h2>
             <div className="news-grid">
               {initialNews?.map((news: any) => (
-                <div key={news.id} className="news-card reveal">
-                  <div className="news-img">
-                    <img src={news.image_url} alt={news.title} loading="lazy" />
-                    <span className="news-tag">{news.tag}</span>
+                <a key={news.id} href={news.link || '#'} target="_blank" rel="noopener" className="news-card-link" style={{ textDecoration: 'none', color: 'inherit' }}>
+                  <div className="news-card reveal">
+                    <div className="news-img">
+                      <img src={news.image_url} alt={news.title} loading="lazy" />
+                      <span className="news-tag">{news.tag}</span>
+                    </div>
+                    <div className="news-body">
+                      <span className="news-date">{news.published_date}</span>
+                      <h4>{news.title}</h4>
+                      <p>{news.description}</p>
+                    </div>
                   </div>
-                  <div className="news-body">
-                    <span className="news-date">{news.published_date}</span>
-                    <h4>{news.title}</h4>
-                    <p>{news.description}</p>
-                  </div>
-                </div>
+                </a>
               ))}
             </div>
           </div>
@@ -613,34 +614,6 @@ export default function PortfolioClient({
           </div>
         </section>
 
-        {/* ── MEDIA VAULT ───────────────────────────────────────── */}
-        {bucketImages.length > 0 && (
-          <section className="chapter" id="vault">
-            <h2 className="chapter-heading">
-              MEDIA<br /><span>VAULT</span>
-            </h2>
-            <div style={{ 
-              display: 'grid', 
-              gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))', 
-              gap: '2rem',
-              marginTop: '15vh'
-            }}>
-              {bucketImages.map((img: any, i: number) => (
-                <div key={i} className="award-item reveal" style={{ height: 'auto' }}>
-                  <div className="award-visual" style={{ height: '350px' }}>
-                    <div className="award-img-container">
-                      <img src={img.url} alt={img.name} style={{ opacity: 1 }} />
-                    </div>
-                  </div>
-                  <div className="award-content">
-                    <p style={{ fontSize: '0.65rem', opacity: 0.5 }}>{img.name}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </section>
-        )}
-
         {/* ── CONTACT FORM ─────────────────────────────────────── */}
         <section className="connect-section" id="contact">
           <div className="connect-blob"></div>
@@ -656,11 +629,7 @@ export default function PortfolioClient({
               const email = (form.querySelector('#contactEmail') as HTMLInputElement)?.value;
               const message = (form.querySelector('#contactMessage') as HTMLTextAreaElement)?.value;
               try {
-                const { createClient } = await import('@supabase/supabase-js');
-                const supabase = createClient(
-                  process.env.NEXT_PUBLIC_SUPABASE_URL!,
-                  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
-                );
+                const { supabase } = await import('../lib/supabase');
                 await supabase.from('contact_messages').insert([{ name, email, message }]);
                 if (status) status.textContent = '✓ Message sent!';
                 form.reset();
