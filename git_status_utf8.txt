@@ -1,0 +1,62 @@
+﻿On branch main
+Changes not staged for commit:
+  (use "git add/rm <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+	deleted:    admin.html
+	deleted:    admin.js
+	modified:   app/globals.css
+	modified:   app/layout.tsx
+	modified:   app/page.tsx
+	modified:   components/PortfolioClient.tsx
+	deleted:    components/awards-section.tsx
+	deleted:    components/contact-form.tsx
+	deleted:    components/credentials-section.tsx
+	deleted:    components/floating-nav.tsx
+	deleted:    components/gsap-initializer.tsx
+	deleted:    components/hero-section.tsx
+	deleted:    components/metrics-section.tsx
+	deleted:    components/mission-section.tsx
+	deleted:    components/theme-toggle.tsx
+	deleted:    components/top-bar.tsx
+	deleted:    components/usage-tracker.tsx
+	deleted:    components/ventures-section.tsx
+	deleted:    convert.js
+	deleted:    index.html
+	deleted:    lib/mockData.ts
+	deleted:    lib/portfolio-data.ts
+	deleted:    old_index.html
+	deleted:    old_index_utf8.html
+	deleted:    script.js
+	modified:   style.css
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+	components/modern-announcement-bar.tsx
+	components/modern-awards.tsx
+	components/modern-coaching-pillars.tsx
+	components/modern-contact.tsx
+	components/modern-credentials.tsx
+	components/modern-footer.tsx
+	components/modern-hero.tsx
+	components/modern-nav.tsx
+	components/modern-news.tsx
+	components/modern-partners.tsx
+	components/modern-pathways.tsx
+	components/modern-testimonials.tsx
+	components/modern-tf-bio.tsx
+	components/modern-tf-event.tsx
+	components/modern-tf-goals.tsx
+	components/modern-tf-quote.tsx
+	components/modern-tf-unlock.tsx
+	components/modern-tf-worth-it.tsx
+	components/tf-unified-card.tsx
+	git_status.txt
+	git_status_utf8.txt
+	lib/lenis-anchor.ts
+	lib/site-assets.ts
+	public/imgs/agents/
+	public/imgs/promo-card-exclusive.jpg
+	public/imgs/promo-card-webinar.jpg
+	tmp_git_log_today.txt
+
+no changes added to commit (use "git add" and/or "git commit -a")
