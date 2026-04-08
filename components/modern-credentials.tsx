@@ -1,31 +1,101 @@
 "use client";
 import React from 'react';
-import { TfUnifiedCard } from './tf-unified-card';
 
 const credentials = [
-  { title: 'Creating Brand Value', body: 'Harvard Business School Online — 2025', cta: 'Learn more', href: '#contact' },
-  { title: 'AI Essentials for Business', body: 'Harvard Business School Online — 2025', cta: 'Learn more', href: '#contact' },
-  { title: 'Digital Marketing Strategy', body: 'Harvard Business School Online — 2024', cta: 'Learn more', href: '#contact' },
-  { title: 'Sustainable Business Strategy', body: 'Harvard Business School Online — 2022', cta: 'Learn more', href: '#contact' },
-  { title: 'Disruptive Strategy', body: 'Harvard Business School Online — 2021', cta: 'Learn more', href: '#contact' },
-  { title: 'Strategy Execution', body: 'Harvard Business School Online — 2021', cta: 'Learn more', href: '#contact' },
-  { title: 'Digital Business Strategy', body: 'MIT Sloan School of Management — 2019', cta: 'Learn more', href: '#contact' },
-  { title: 'Digital Marketing', body: 'University of Oxford — 2019', cta: 'Learn more', href: '#contact' },
-  { title: 'Licensed Real Estate Broker', body: 'Professional Regulation Commission', cta: 'Learn more', href: '#contact' },
-  { title: "Bachelor's Degree", body: 'University of San Jose-Recoletos — 1992', cta: 'Learn more', href: '#contact' },
+  { 
+    title: 'Creating Brand Value', 
+    inst: 'Harvard Business School Online', 
+    year: '2025', 
+    logo: '/imgs/harvard-logo.png',
+    href: '#contact' 
+  },
+  { 
+    title: 'AI Essentials for Business', 
+    inst: 'Harvard Business School Online', 
+    year: '2025',
+    logo: '/imgs/harvard-logo.png',
+    href: '#contact' 
+  },
+  { 
+    title: 'Digital Marketing Strategy', 
+    inst: 'Harvard Business School Online', 
+    year: '2024',
+    logo: '/imgs/harvard-logo.png',
+    href: '#contact' 
+  },
+  { 
+    title: 'Sustainable Business Strategy', 
+    inst: 'Harvard Business School Online', 
+    year: '2022',
+    logo: '/imgs/harvard-logo.png',
+    href: '#contact' 
+  },
+  { 
+    title: 'Disruptive Strategy', 
+    inst: 'Harvard Business School Online', 
+    year: '2021',
+    logo: '/imgs/harvard-logo.png',
+    href: '#contact' 
+  },
+  { 
+    title: 'Strategy Execution', 
+    inst: 'Harvard Business School Online', 
+    year: '2021',
+    logo: '/imgs/harvard-logo.png',
+    href: '#contact' 
+  },
+  { 
+    title: 'Digital Business Strategy', 
+    inst: 'MIT Sloan School of Management', 
+    year: '2019',
+    logo: '/imgs/mit-logo.png',
+    href: '#contact' 
+  },
+  { 
+    title: 'Digital Marketing', 
+    inst: 'University of Oxford', 
+    year: '2019',
+    logo: '/imgs/oxford-logo.png',
+    href: '#contact' 
+  },
+  { 
+    title: 'Licensed Real Estate Broker', 
+    inst: 'Professional Regulation Commission', 
+    year: 'Philippines',
+    logo: '/imgs/prc-logo.png',
+    href: '#contact' 
+  },
+  { 
+    title: "Bachelor's Degree", 
+    inst: 'University of San Jose-Recoletos', 
+    year: '1992',
+    logo: '/imgs/usjr-logo.png',
+    href: '#contact' 
+  },
 ];
 
 export function ModernCredentials() {
   return (
-    <section className="tf-ecosystem tf-credentials-section" id="credentials">
+    <section className="tf-credentials-section" id="credentials">
       <div className="tf-shell">
         <h2 className="tf-ecosystem-heading reveal">
           Elite <span className="tf-inline-accent">authority</span>
         </h2>
         <p className="tf-partners-intro reveal">Formal training and licensing that sit underneath the coaching work in the field.</p>
-        <div className="tf-eco-grid">
+        
+        <div className="tf-cred-grid">
           {credentials.map((c, i) => (
-            <TfUnifiedCard key={c.title} {...c} featured={i === 0} />
+            <article key={i} className="tf-cred-card reveal">
+              <img src={c.logo} alt={c.inst} className="tf-cred-logo" loading="lazy" />
+              <div className="tf-cred-info">
+                <h3 className="tf-cred-title">{c.title}</h3>
+                <span className="tf-cred-inst">{c.inst}</span>
+                <span className="tf-cred-year">{c.year}</span>
+              </div>
+              <a href={c.href} className="tf-cred-link">
+                Learn more <span>&rarr;</span>
+              </a>
+            </article>
           ))}
         </div>
       </div>

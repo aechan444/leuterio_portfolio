@@ -12,7 +12,6 @@ import { ModernPathways } from './modern-pathways';
 import { ModernTfBio } from './modern-tf-bio';
 import { ModernTfWorthIt } from './modern-tf-worth-it';
 import { ModernPartners } from './modern-partners';
-import { ModernTestimonials } from './modern-testimonials';
 import { ModernNews } from './modern-news';
 import { ModernCoachingPillars } from './modern-coaching-pillars';
 import { ModernAwards } from './modern-awards';
@@ -101,7 +100,6 @@ export default function PortfolioClient() {
         <ModernTfBio />
         <ModernTfWorthIt />
         <ModernPartners />
-        <ModernTestimonials />
         <ModernNews />
         <ModernCoachingPillars />
         <ModernAwards />

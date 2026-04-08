@@ -8,28 +8,28 @@ const offers = [
     body: 'The foundation of top achievers. Set up guardrails so you hit your targets every time. Discover which program fits you best.',
     cta: 'Learn More',
     href: '#coaching',
-    image: '/imgs/promo-card-webinar.jpg',
+    image: '/imgs/bossing2.jpg',
   },
   {
     title: 'Events',
     body: 'Meet Anthony and leading industry experts, gain cutting-edge strategies, and forge essential business connections.',
     cta: 'Get Tickets',
     href: '#contact',
-    image: '/imgs/promo-card-exclusive.jpg',
+    image: '/imgs/bossing1.jpg',
   },
   {
     title: 'Training',
     body: 'From self-guided systems to masterminds with top producers—you will find what you need in the style that works for you.',
     cta: 'Find Programs',
     href: '#coaching',
-    image: '/imgs/agents/george-ryan-sarmago.png',
+    image: '/imgs/bossing3.jpg',
   },
   {
     title: 'Agent tools',
     body: 'Resources, scripts, marketing ideas, and playbooks from the Filipino Homes and Leuterio ecosystem—built for execution.',
     cta: 'Agent Tools',
     href: '#ecosystem-partners',
-    image: '/imgs/agents/azela-honor.png',
+    image: '/imgs/bossing4.jpg',
   },
 ];
 
