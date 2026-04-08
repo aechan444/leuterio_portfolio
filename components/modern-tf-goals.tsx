@@ -79,14 +79,16 @@ export function ModernTfGoals() {
             <p>
               &ldquo;AS FAR AS I&apos;M<br />
               CONCERNED,<br /><br />
-              THERE IS<br />
-              NO OTHER COACH.&rdquo;
+              <strong style={{ fontWeight: 800 }}>
+                THERE IS<br />
+                NO OTHER COACH.&rdquo;
+              </strong>
             </p>
           </blockquote>
 
           <blockquote className="tf-goals-quote tf-goals-quote--accent-right tf-goals-quote--2">
             <p>
-              Unlock Opportunities &amp; Support<br />
+              Unlock <strong style={{ fontWeight: 800 }}>Opportunities &amp; Support</strong><br />
               Beyond Limits
             </p>
           </blockquote>

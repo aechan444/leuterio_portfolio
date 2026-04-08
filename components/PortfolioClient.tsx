@@ -6,7 +6,7 @@ import { ModernAnnouncementBar } from './modern-announcement-bar';
 import { ModernHero } from './modern-hero';
 import { ModernTfEvent } from './modern-tf-event';
 import { ModernTfGoals } from './modern-tf-goals';
-import { ModernTfQuote } from './modern-tf-quote';
+
 import { ModernTfUnlock } from './modern-tf-unlock';
 import { ModernPathways } from './modern-pathways';
 import { ModernTfBio } from './modern-tf-bio';
@@ -95,9 +95,9 @@ export default function PortfolioClient() {
         <ModernHero />
         <ModernTfEvent />
         <ModernTfGoals />
-        <ModernTfQuote />
-        <ModernTfUnlock />
+
         <ModernPathways />
+        <ModernTfUnlock />
         <ModernTfBio />
         <ModernTfWorthIt />
         <ModernPartners />

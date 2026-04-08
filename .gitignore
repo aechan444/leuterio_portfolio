@@ -38,3 +38,9 @@ prototype_components.txt
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Temporary or sensitive files
+AI_IOT_SMART_SHOE_ORGANIZER.md
+fhiglobal-ae-qa-report-2026-04-07.md
+fhiglobal_login_cookies.txt
+login_page.html
